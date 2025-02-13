@@ -1,0 +1,62 @@
+services:
+  frontend:
+    build:
+      context: ./react_product_apps
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"  # Ensure port mapping
+    depends_on:
+      - backend
+    volumes:
+      - ./react_product_apps:/app  # Ensure correct working directory
+      - /app/node_modules  # Prevent overriding node_modules
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+    - my_network
+
+  backend:
+    build:
+      context: ./rest_api_project
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      database:
+        condition: service_healthy  # Wait until database is ready
+    environment:
+      - DATABASE_URL=mysql://user:password@database:3306/product_db?serverTimezone=UTC
+    volumes:
+      - ./rest_api_project:/var/www/html  # Mount the full project directory
+    networks:
+    - my_network
+
+
+
+  database:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: product_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./product_api.sql:/docker-entrypoint-initdb.d/product_api.sql:ro
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+    - my_network
+
+volumes:
+  mysql_data:
+
+networks:
+  my_network:
+    driver: bridge
