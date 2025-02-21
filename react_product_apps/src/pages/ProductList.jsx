@@ -1,6 +1,6 @@
 //Halaman Daftar Produk = show list data produk dan to do CRUD of product data
 
-import React, { useEffect, useState } from "react";  // Import React and necessary hooks for side effects and state management
+import React, { useEffect, useState, useRef } from "react";  // Import React and necessary hooks for side effects and state management
 import { useNavigate } from "react-router-dom";  // Import useNavigate for page navigation
 import Layout from "../components/Layout";  // Import Layout component for consistent page structure
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;  // Ambil URL dari .env
@@ -9,16 +9,22 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);  // State to hold the list of products
   const [loading, setLoading] = useState(true);  // State to manage loading status
   const navigate = useNavigate();  // Hook to navigate between pages
+  const fetched = useRef(false); // Gunakan useRef untuk mencegah fetch ulang
 
   // useEffect hook to fetch products data from API when the component mounts
   useEffect(() => {
-    fetch(`${API_BASE_URL}/products`)  // Fetch the products data
-      .then((response) => response.json())  // Parse the response to JSON
-      .then((data) => {
-        setProducts(data.data);  // Update state with the fetched product data
-        setLoading(false);  // Set loading state to false once data is loaded
-      })
-      .catch(() => setLoading(false));  // Handle error and stop loading
+    if (!fetched.current) {
+      console.log("Fetching product list...");
+      fetch(`${API_BASE_URL}/products`)  // Fetch the products data
+        .then((response) => response.json())  // Parse the response to JSON
+        .then((data) => {
+          setProducts(data.data);  // Update state with the fetched product data
+          setLoading(false);  // Set loading state to false once data is loaded
+        })
+        .catch(() => setLoading(false));  // Handle error and stop loading
+      
+      fetched.current = true; // Pastikan fetch hanya terjadi sekali
+    }
   }, []);  // Empty dependency array ensures this runs only once when the component mounts
 
   // Function to handle product deletion
