@@ -7,9 +7,6 @@ services:
       - "5173:5173"  # Ensure port mapping
     depends_on:
       - backend
-    volumes:
-      - ./react_product_apps:/app  # Ensure correct working directory
-      - /app/node_modules  # Prevent overriding node_modules
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
@@ -26,8 +23,6 @@ services:
         condition: service_healthy  # Wait until database is ready
     environment:
       - DATABASE_URL=mysql://user:password@database:3306/product_db?serverTimezone=UTC
-    volumes:
-      - ./rest_api_project:/var/www/html  # Mount the full project directory
     networks:
     - my_network
 
