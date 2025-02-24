@@ -24,7 +24,7 @@ const Sidebar = () => {
   return (
     <div style={sidebarStyle}>
       <h2>Management Product</h2>
-      <Link to="/" style={linkStyle}>
+      <Link to="/dashboard" style={linkStyle}>
         Dashboard
       </Link>
       <Link to="/products" style={linkStyle}>

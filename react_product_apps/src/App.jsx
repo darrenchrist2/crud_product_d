@@ -7,13 +7,17 @@ import Dashboard from "./pages/Dashboard";
 import ProductList from "./pages/ProductList";
 import CreateProduct from "./pages/CreateProduct";
 import EditProduct from "./pages/EditProduct";
+import LoginPage from "./pages/LoginPage"; 
+import RegisterPage from "./pages/RegisterPage"; 
 
 //Mendefinisikan beberapa route utama yg mengarah ke main pages
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<LoginPage />} /> 
+        <Route path="/register" element={<RegisterPage />} /> 
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/products/create" element={<CreateProduct />} />
         <Route path="/products/edit/:id" element={<EditProduct />} />

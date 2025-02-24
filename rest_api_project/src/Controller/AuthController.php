@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AuthController extends AbstractController
 {
@@ -24,7 +23,7 @@ class AuthController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        return new JsonResponse(['message' => 'User registered successfully'], 201);
+        return new JsonResponse(['message' => 'User registered successfully !!!'], 201);
     }
 
     #[Route('/login', name: 'login', methods: ['POST'])]
@@ -38,6 +37,6 @@ class AuthController extends AbstractController
             return new JsonResponse(['message' => 'Invalid credentials'], 401);
         }
 
-        return new JsonResponse(['message' => 'Login successful']);
+        return new JsonResponse(['message' => 'Login successful !!!']);
     }
 }
