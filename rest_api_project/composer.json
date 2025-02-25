@@ -12,7 +12,6 @@
         "doctrine/doctrine-migrations-bundle": "^3.4",
         "doctrine/orm": "^3.3",
         "firebase/php-jwt": "^6.11",
-        "league/oauth2-google": "^4.0",
         "nelmio/cors-bundle": "^2.5",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
