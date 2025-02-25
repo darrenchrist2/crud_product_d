@@ -20,7 +20,7 @@ CREATE TABLE `product` (
   `price` double NOT NULL,
   `description` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -29,7 +29,7 @@ CREATE TABLE `user` (
   `email` varchar(200) DEFAULT NULL,
   `role` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 ('DoctrineMigrations\\Version20250205030929', '2025-02-24 11:03:26', 15);
@@ -41,10 +41,11 @@ INSERT INTO `product` (`id`, `name`, `price`, `description`) VALUES
 (1, 'Botol Minum', 100000, 'Merk Tupperware');
 INSERT INTO `product` (`id`, `name`, `price`, `description`) VALUES
 (2, 'Casing Smartphone', 20000, 'Bahan Silicon');
-
+INSERT INTO `product` (`id`, `name`, `price`, `description`) VALUES
+(4, 'Jam Tangan', 250000, 'Casio Keren');
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`) VALUES
-(1, 'darren', 'darren123', 'darrenchrist2@gmail.com', 'user');
+(5, 'jessi', 'jessi123', 'jessi@gmail.com', 'user');
 
 
 
