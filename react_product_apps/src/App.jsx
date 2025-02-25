@@ -9,6 +9,7 @@ import CreateProduct from "./pages/CreateProduct";
 import EditProduct from "./pages/EditProduct";
 import LoginPage from "./pages/LoginPage"; 
 import RegisterPage from "./pages/RegisterPage"; 
+import PrivateRoute from "./components/PrivateRoute";
 
 //Mendefinisikan beberapa route utama yg mengarah ke main pages
 const App = () => {
@@ -17,10 +18,13 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} /> 
         <Route path="/register" element={<RegisterPage />} /> 
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/products" element={<ProductList />} />
-        <Route path="/products/create" element={<CreateProduct />} />
-        <Route path="/products/edit/:id" element={<EditProduct />} />
+
+        <Route element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/products/create" element={<CreateProduct />} />
+          <Route path="/products/edit/:id" element={<EditProduct />} />
+        </Route>
       </Routes>
     </Router>
   );

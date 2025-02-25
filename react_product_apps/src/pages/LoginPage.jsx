@@ -17,6 +17,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await login(formData);
+      localStorage.setItem("token", response.data.token); // Simpan token
       alert(response.data.message);
       navigate("/dashboard"); // Redirect ke Dashboard setelah login sukses
     } catch (error) {

@@ -1,5 +1,5 @@
 //Halaman Dashboard = menampilkan total produk yg ada di db
-
+import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";  // Import React and the necessary hooks (useState, useEffect)
 import Layout from "../components/Layout";  // Import the Layout component to wrap the page content
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;  // Ambil URL dari .env
@@ -7,6 +7,11 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;  // Ambil URL dari .env
 const Dashboard = () => {
   // State to store the total number of products, initialized to 0
   const [totalProducts, setTotalProducts] = useState(0);
+  const navigate = useNavigate(); // Inisialisasi navigate
+  const handleLogout = () => { // Function to handle logout
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   // useEffect hook to fetch the product data when the component is mounted (ambil data produk from backend)
   useEffect(() => {
@@ -18,6 +23,7 @@ const Dashboard = () => {
   return (
     <Layout>  
       <h1>Dashboard</h1> 
+      <button onClick={handleLogout}>Logout</button> {/* Button to handle logout */}
       <div
         style={{
           padding: "20px",  // Add padding inside the div
