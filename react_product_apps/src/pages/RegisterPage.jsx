@@ -27,6 +27,24 @@ const RegisterPage = () => {
 
   return (
     <div>
+      <style>
+        {`
+          form button{
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 500px;
+          }
+          h2{
+            text-align: center;
+          }
+        `}
+      </style>
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <input type="text" name="username" placeholder="Username" onChange={handleChange} />

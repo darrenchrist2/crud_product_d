@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
   const sidebarStyle = {
     width: "150px",
     height: "100vh",
@@ -21,6 +23,23 @@ const Sidebar = () => {
     fontSize: "18px",
   };
 
+  const handleLogout = () => { // Function to handle logout
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
+  const logoutButtonStyle = {
+    marginTop: "20px",
+    padding: "10px",
+    width: "100%",
+    backgroundColor: "red",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    fontSize: "16px",
+  };
+
   return (
     <div style={sidebarStyle}>
       <h2>Management Product</h2>
@@ -30,6 +49,10 @@ const Sidebar = () => {
       <Link to="/products" style={linkStyle}>
         Data Product
       </Link>
+      <hr style={{ marginTop: "20px", borderColor: "white" }} />
+      <button onClick={handleLogout} style={logoutButtonStyle}>
+        Logout
+      </button>
     </div>
   );
 };
