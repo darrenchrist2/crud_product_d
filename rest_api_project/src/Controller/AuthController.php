@@ -19,6 +19,7 @@ class AuthController extends AbstractController
         $user->setUsername($data['username']);
         $user->setEmail($data['email']);
         $user->setPassword($data['password']);
+        $user->setRole('user');
 
         $entityManager->persist($user);
         $entityManager->flush();
