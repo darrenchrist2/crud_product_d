@@ -20,37 +20,32 @@ CREATE TABLE `product` (
   `price` double NOT NULL,
   `description` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(200) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
+  `role` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 ('DoctrineMigrations\\Version20250205030929', '2025-02-24 11:03:26', 15);
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20250224104931', '2025-02-24 11:50:07', 14);
+('DoctrineMigrations\\Version20250225033742', '2025-02-25 04:38:09', 19);
 
 
 INSERT INTO `product` (`id`, `name`, `price`, `description`) VALUES
 (1, 'Botol Minum', 100000, 'Merk Tupperware');
+INSERT INTO `product` (`id`, `name`, `price`, `description`) VALUES
+(2, 'Casing Smartphone', 20000, 'Bahan Silicon');
 
 
-INSERT INTO `user` (`id`, `username`, `password`, `email`) VALUES
-(1, 'darren', '123456', 'darrenchrist2@gmail.com');
-INSERT INTO `user` (`id`, `username`, `password`, `email`) VALUES
-(2, 'christian', '45678910', 'darrenchrist2@gmail.com');
-INSERT INTO `user` (`id`, `username`, `password`, `email`) VALUES
-(3, 'dionisius', '130604', 'darrenchrist2@gmail.com');
-INSERT INTO `user` (`id`, `username`, `password`, `email`) VALUES
-(4, 'alexander', '130406', 'darrenchrist2@gmail.com'),
-(7, 'jessi', 'jessi123', 'darrenchrist2@gmail.com'),
-(9, 'olla', 'olla123', 'darrenchrist2@gmail.com'),
-(10, 'james', 'james123', 'darrenchrist2@gmail.com');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`) VALUES
+(1, 'darren', 'darren123', 'darrenchrist2@gmail.com', 'user');
+
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
