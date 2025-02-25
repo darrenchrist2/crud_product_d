@@ -39,6 +39,10 @@ const Sidebar = () => {
     cursor: "pointer",
     fontSize: "16px",
   };
+  
+  const logoutButtonHoverStyle = {
+    backgroundColor: "darkred", // Warna berubah saat hover
+  };
 
   return (
     <div style={sidebarStyle}>
@@ -50,7 +54,12 @@ const Sidebar = () => {
         Data Product
       </Link>
       <hr style={{ marginTop: "20px", borderColor: "white" }} />
-      <button onClick={handleLogout} style={logoutButtonStyle}>
+      <button
+        onClick={handleLogout}
+        style={{ ...logoutButtonStyle }}
+        onMouseEnter={(e) => (e.target.style.backgroundColor = logoutButtonHoverStyle.backgroundColor)}
+        onMouseLeave={(e) => (e.target.style.backgroundColor = logoutButtonStyle.backgroundColor)}
+      >
         Logout
       </button>
     </div>
