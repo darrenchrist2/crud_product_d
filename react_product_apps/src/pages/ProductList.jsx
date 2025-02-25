@@ -15,7 +15,7 @@ const ProductList = () => {
   useEffect(() => {
     if (!fetched.current) {
       console.log("Fetching product list...");
-      fetch(`${API_BASE_URL}/products`)  // Fetch the products data
+      fetch(`${API_BASE_URL}/api/products`)  // Fetch the products data
         .then((response) => response.json())  // Parse the response to JSON
         .then((data) => {
           setProducts(data.data);  // Update state with the fetched product data
@@ -30,7 +30,7 @@ const ProductList = () => {
   // Function to handle product deletion
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {  // Confirm before deletion
-      fetch(`http://localhost:8000/api/products/${id}`, {
+      fetch(`${API_BASE_URL}/api/products/${id}`, {
         method: "DELETE",  // Set HTTP method to DELETE
       }).then(() =>
         setProducts(products.filter((product) => product.id !== id))  // Remove the deleted product from the state

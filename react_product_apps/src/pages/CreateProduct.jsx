@@ -24,7 +24,7 @@ const CreateProduct = () => {
   // Handle form submission when creating a new product
   const handleSubmit = (e) => {
     e.preventDefault();  // Prevent the default form submission behavior
-    fetch(`${API_BASE_URL}/products`, {
+    fetch(`${API_BASE_URL}/api/products`, {
       method: "POST",  // Use POST method to create a new product (POST=create)
       headers: { "Content-Type": "application/json" },  // Set content-type as JSON
       body: JSON.stringify(product),  // Send the product data object as JSON string in the request body

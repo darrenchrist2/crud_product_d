@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   // useEffect hook to fetch the product data when the component is mounted (ambil data produk from backend)
   useEffect(() => {
-    fetch(`${API_BASE_URL}/products`)  // Make a GET request to the API to fetch products
+    fetch(`${API_BASE_URL}/api/products`)  // Make a GET request to the API to fetch products
       .then((response) => response.json())  // Parse the response as JSON
       .then((data) => setTotalProducts(data.data.length));  // Set the total products count to the length of the returned data
   }, []);  // The empty dependency array ensures this effect runs only once when the component mounts

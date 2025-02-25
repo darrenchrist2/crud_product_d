@@ -21,7 +21,7 @@ const EditProduct = () => {
 
   // useEffect hook to fetch product data when the component mounts or when the id changes
   useEffect(() => {
-    fetch(`${API_BASE_URL}/products/${id}`)  // Make an API call to fetch product details based on the id
+    fetch(`${API_BASE_URL}/api/products/${id}`)  // Make an API call to fetch product details based on the id
       .then((response) => response.json())  // Parse the response to JSON
       .then((data) => {
         if (data.status === true) {
@@ -41,7 +41,7 @@ const EditProduct = () => {
   // Handle form submission (submit the updated product data)
   const handleSubmit = (e) => {
     e.preventDefault();  // Prevent the default form submission behavior (auto reload)
-    fetch(`${API_BASE_URL}/products/${id}`, {
+    fetch(`${API_BASE_URL}/api/products/${id}`, {
       method: "PUT",  // Use PUT method to update the product (PUT=update)
       headers: { "Content-Type": "application/json" },  // Set content-type as JSON
       body: JSON.stringify(product),  // Send the product data object as JSON string in the request body
