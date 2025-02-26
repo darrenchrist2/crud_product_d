@@ -13,7 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AuthController extends AbstractController
 {
-    private string $jwtSecret = "darren_secret_key"; // gunakan secret key yang aman
+    private string $jwtSecret;
+    public function __construct()
+    {
+        // Mengambil variabel dari .env menggunakan getenv() atau $_ENV
+        $this->jwtSecret = getenv('JWT_SECRET_KEY') ?: $_ENV['JWT_SECRET_KEY'] ?? 'default_secret';
+    }
+
     #[Route('/register', name: 'register', methods: ['POST'])]
     public function register(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {

@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { login } from "../api/auth";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { Link } from "react-router-dom";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import GoogleLoginButton from "../components/GoogleLoginButton";
-
-const GOOGLE_CLIENT_ID = "654450235611-56cqcfg24j59b7g2g0bls6u0qfgd2lj5.apps.googleusercontent.com";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -63,7 +60,6 @@ const LoginPage = () => {
           }
         `}
       </style>
-      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input type="text" name="username" placeholder="Username" onChange={handleChange} />
@@ -80,7 +76,6 @@ const LoginPage = () => {
       <div className="register-container">
       <p>Don't have an account? <Link to="/register">Sign up</Link></p>
       </div>
-      </GoogleOAuthProvider>
     </div>
   );
 };
