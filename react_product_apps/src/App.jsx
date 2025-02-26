@@ -10,6 +10,7 @@ import EditProduct from "./pages/EditProduct";
 import LoginPage from "./pages/LoginPage"; 
 import RegisterPage from "./pages/RegisterPage"; 
 import PrivateRoute from "./components/PrivateRoute";
+import GoogleCallback from "./pages/GoogleCallback";
 
 //Mendefinisikan beberapa route utama yg mengarah ke main pages
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} /> 
         <Route path="/register" element={<RegisterPage />} /> 
+        <Route path="/google/callback" element={<GoogleCallback />} />
 
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
