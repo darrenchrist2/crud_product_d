@@ -48,9 +48,12 @@ const EditProduct = () => {
     })
       .then((response) => response.json())  // Parse the response to JSON
       .then((data) => {
-        alert(data.message);  // Show a message from the server (success or error)
         if (data.status === true) {
+          alert(data.message);
           navigate('/products');  // If update is successful, navigate to the product list
+        }
+        if (data.status === false){
+          alert(data.message); // If update is failed, show the error message
         }
       });
   }; 
