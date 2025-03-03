@@ -24,6 +24,16 @@ class AuthController extends AbstractController
     public function register(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
+        $userRepository = $entityManager->getRepository(User::class);
+
+        //cek apakah username dan email sudah terdaftar
+        if($userRepository->findOneBy(['username'=>$data['username']])){
+            return new JsonResponse(['message' => 'Username already exist!!!'], 400);
+        }
+        if ($userRepository->findOneBy(['email' => $data['email']])) {
+            return new JsonResponse(['message' => 'Email already exists!!!'], 400);
+        }
+
         $user = new User();
         $user->setUsername($data['username']);
         $user->setEmail($data['email']);

@@ -21,7 +21,7 @@ const RegisterPage = () => {
       alert(response.data.message);
       navigate("/"); // Redirect ke login setelah register sukses
     } catch (error) {
-      alert("Registration failed!");
+      alert(error.response.data.message);
     }
   };
 
