@@ -20,7 +20,7 @@ CREATE TABLE `product` (
   `price` double NOT NULL,
   `description` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -28,14 +28,16 @@ CREATE TABLE `user` (
   `password` varchar(200) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
   `role` varchar(100) DEFAULT NULL,
+  `is_google_account` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 ('DoctrineMigrations\\Version20250205030929', '2025-02-24 11:03:26', 15);
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 ('DoctrineMigrations\\Version20250225033742', '2025-02-25 04:38:09', 19);
-
+INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
+('DoctrineMigrations\\Version20250303104252', '2025-03-03 11:43:44', 13);
 
 INSERT INTO `product` (`id`, `name`, `price`, `description`) VALUES
 (1, 'Botol Minum', 100000, 'Merk Tupperware');
@@ -43,10 +45,20 @@ INSERT INTO `product` (`id`, `name`, `price`, `description`) VALUES
 (2, 'Casing Smartphone', 20000, 'Bahan Silicon');
 INSERT INTO `product` (`id`, `name`, `price`, `description`) VALUES
 (4, 'Jam Tangan', 250000, 'Casio Keren');
+INSERT INTO `product` (`id`, `name`, `price`, `description`) VALUES
+(5, 'Mouse Gaming ', 2000000, 'Merk Razer');
 
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`) VALUES
-(5, 'jessi', 'jessi123', 'jessi@gmail.com', 'user');
-
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `is_google_account`) VALUES
+(5, 'jessi', 'jessi123', 'jessi@gmail.com', 'user', 0);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `is_google_account`) VALUES
+(6, 'darren', 'darren123', 'darren@gmail.com', 'user', 0);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `is_google_account`) VALUES
+(7, 'Darren Christian', '', 'darrenchrist2@gmail.com', 'user', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `is_google_account`) VALUES
+(10, 'jessica', 'jessica123', 'jessica@gmail.com', 'user', 0),
+(11, 'stacia', 'stacia123', 'stacia@gmail.com', 'user', 0),
+(12, 'dionisius', '123', 'dionius@gmail.com', 'user', 0),
+(13, 'Darren Christian', '', 'darrensiwibu@gmail.com', 'user', 1);
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
