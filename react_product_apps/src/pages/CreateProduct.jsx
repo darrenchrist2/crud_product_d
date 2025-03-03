@@ -31,9 +31,12 @@ const CreateProduct = () => {
     })
       .then((response) => response.json())  // Parse the response to JSON
       .then((data) => {
-        alert(data.message);  // Show a message returned from the server (success or error)
         if (data.status === true) {  // If product creation is successful, navigate to products list
+          alert(data.message);
           navigate("/products");
+        }
+        if(data.status === false) {  // If product creation is failed, show the error message
+          alert(data.message);
         }
       });
   };

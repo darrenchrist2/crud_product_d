@@ -88,6 +88,17 @@ class ProductController extends AbstractController
             ]);
         }
 
+         // Cek apakah produk dengan nama yang sama sudah ada
+         $existingProduct = $entityManager->getRepository(Product::class)->findOneBy(['name' => $data['name']]);
+         if ($existingProduct) {
+             return $this->json([
+                 'data' => null,
+                 'status' => false,
+                 'code' => 400,
+                 'message' => 'Product with this name already exists'
+             ]);
+         }
+
         // Membuat entitas produk baru dan mengisinya dengan data yang didapat dari json
         $product = new Product();
         $product->setName($data['name']);
