@@ -78,6 +78,7 @@ class GoogleAuthController extends AbstractController
             $user->setEmail($email);
             $user->setPassword("");
             $user->setRole("user");
+            $user->setIsGoogleAccount(true); // Default: akun Google
 
             $entityManager->persist($user);
             $entityManager->flush();

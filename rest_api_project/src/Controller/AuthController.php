@@ -39,6 +39,7 @@ class AuthController extends AbstractController
         $user->setEmail($data['email']);
         $user->setPassword($data['password']);
         $user->setRole('user');
+        $user->setIsGoogleAccount(false); // Default: bukan akun Google
 
         $entityManager->persist($user);
         $entityManager->flush();
@@ -55,6 +56,11 @@ class AuthController extends AbstractController
 
         if (!$user || $user->getPassword() !== $data['password']) {
             return new JsonResponse(['message' => 'Invalid credentials'], 401);
+        }
+
+        // Cek apakah akun dibuat dengan Google Sign-In
+        if ($user->getIsGoogleAccount()) {
+            return new JsonResponse(['message' => 'This account was created using Google Sign-In. Please log in using Google.'], 403);
         }
 
         // Buat token JWT

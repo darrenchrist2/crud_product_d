@@ -25,6 +25,9 @@ class User
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $role = null; 
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $isGoogleAccount = false; 
+
     
     public function getId(): ?int
     {
@@ -76,6 +79,18 @@ class User
     {
         $this->role = $role;
 
+        return $this;
+    }
+
+    // Getter dan Setter untuk isGoogleAccount
+    public function getIsGoogleAccount(): bool
+    {
+        return $this->isGoogleAccount;
+    }
+
+    public function setIsGoogleAccount(bool $isGoogleAccount): static
+    {
+        $this->isGoogleAccount = $isGoogleAccount;
         return $this;
     }
 }

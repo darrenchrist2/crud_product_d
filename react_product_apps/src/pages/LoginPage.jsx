@@ -23,7 +23,7 @@ const LoginPage = () => {
       alert(response.data.message);
       navigate("/dashboard"); // Redirect ke Dashboard setelah login sukses
     } catch (error) {
-      alert("Login failed!");
+      alert(error.response.data.message);
     }
   };
 
