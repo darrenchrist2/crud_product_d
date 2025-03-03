@@ -29,6 +29,24 @@ const RegisterPage = () => {
     <div>
       <style>
         {`
+        body{
+          margin: 0;
+          padding: 0;
+          background-color: #f4f4f4;
+         }
+        .register-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
           form button{
             padding: 10px;
             background-color: #007BFF;
@@ -45,13 +63,15 @@ const RegisterPage = () => {
           }
         `}
       </style>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="username" placeholder="Username" onChange={handleChange} />
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} />
-        <input type="password" name="password" placeholder="Password" onChange={handleChange} />
-        <button type="submit">Register</button>
-      </form>
+      <div className="register-box">
+        <h2>Register</h2>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="username" placeholder="Username" onChange={handleChange} />
+          <input type="email" name="email" placeholder="Email" onChange={handleChange} />
+          <input type="password" name="password" placeholder="Password" onChange={handleChange} />
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -31,6 +31,24 @@ const LoginPage = () => {
     <div>
       <style>
          {`
+         body{
+          margin: 0;
+          padding: 0;
+          background-color: #f4f4f4;
+         }
+         .login-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
          .register-container {
             display: flex;
             flex-direction: column;
@@ -60,21 +78,23 @@ const LoginPage = () => {
           }
         `}
       </style>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="username" placeholder="Username" onChange={handleChange} />
-        <input type="password" name="password" placeholder="Password" onChange={handleChange} />
-        <button type="submit">Login</button>
-        <div style={{ display: "flex", alignItems: "center", margin: "20px 0" }}>
-        <div style={{ flex: 1, borderTop: "1px solid #ccc" }}></div>
-        <span style={{ margin: "0 10px", color: "#666" }}>or</span>
-        <div style={{ flex: 1, borderTop: "1px solid #ccc" }}></div>
+      <div className="login-box">
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="username" placeholder="Username" onChange={handleChange} />
+          <input type="password" name="password" placeholder="Password" onChange={handleChange} />
+          <button type="submit">Login</button>
+          <div style={{ display: "flex", alignItems: "center", margin: "20px 0" }}>
+          <div style={{ flex: 1, borderTop: "1px solid #ccc" }}></div>
+          <span style={{ margin: "0 10px", color: "#666" }}>or</span>
+          <div style={{ flex: 1, borderTop: "1px solid #ccc" }}></div>
+          </div>
+        </form>
+        <GoogleLoginButton />
+        {/* Tombol untuk pindah ke halaman register */}
+        <div className="register-container">
+        <p>Don't have an account? <Link to="/register">Sign up</Link></p>
         </div>
-      </form>
-      <GoogleLoginButton />
-      {/* Tombol untuk pindah ke halaman register */}
-      <div className="register-container">
-      <p>Don't have an account? <Link to="/register">Sign up</Link></p>
       </div>
     </div>
   );
