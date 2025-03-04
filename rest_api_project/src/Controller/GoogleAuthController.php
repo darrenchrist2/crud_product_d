@@ -55,9 +55,13 @@ class GoogleAuthController extends AbstractController
             return new JsonResponse(['message' => 'Authorization failed'], 401);
         }
 
-        $token = $google->getAccessToken('authorization_code', [
-            'code' => $request->query->get('code'),
-        ]);
+        try {
+            $token = $google->getAccessToken('authorization_code', [
+                'code' => $request->query->get('code'),
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse(['message' => 'Invalid authorization code'], 400);
+        }
 
         $googleUser = $google->getResourceOwner($token);
         $userData = $googleUser->toArray();

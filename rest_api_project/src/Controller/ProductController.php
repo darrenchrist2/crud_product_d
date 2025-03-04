@@ -54,7 +54,7 @@ class ProductController extends AbstractController
                 'status' => false,
                 'code' => 404,
                 'message' => 'Product not found'
-            ]);
+            ], 404);
         }
 
         // Jika produk ditemukan, mengembalikan data produk
@@ -113,7 +113,7 @@ class ProductController extends AbstractController
         return $this->json([
             'data' => null,
             'status' => true,
-            'code' => 201,
+            'code' => 200,
             'message' => 'Product created successfully'
         ]);
     }
@@ -139,14 +139,17 @@ class ProductController extends AbstractController
         $data = json_decode($request->getContent(), true);
 
         // Cek apakah produk dengan nama yang sama sudah ada
-        $existingProduct = $entityManager->getRepository(Product::class)->findOneBy(['name' => $data['name']]);
-        if ($existingProduct) {
-            return $this->json([
-                'data' => null,
-                'status' => false,
-                'code' => 400,
-                'message' => 'Product with this name already exists'
-            ]);
+        if (isset($data['name'])) {
+            $existingProduct = $entityManager->getRepository(Product::class)->findOneBy(['name' => $data['name']]);
+            if ($existingProduct && $existingProduct->getId() !== $id) {
+                return $this->json([
+                    'data' => null,
+                    'status' => false,
+                    'code' => 400,
+                    'message' => 'Product with this name already exists'
+                ]);
+            }
+            $product->setName($data['name']);
         }
 
         // Memperbarui produk jika data tersedia
