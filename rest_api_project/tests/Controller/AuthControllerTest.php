@@ -16,9 +16,11 @@ class AuthControllerTest extends WebTestCase
 
     public function testRegisterSuccess()
     {
+        $testUsername = 'Testuser' . uniqid();
+        $testEmail = 'test' . uniqid() . '@example.com';
         $this->client->request('POST', '/register', [], [], ['CONTENT_TYPE' => 'application/json'], json_encode([
-            'username' => 'testuser',
-            'email' => 'test@example.com',
+            'username' => $testUsername,
+            'email' => $testEmail,
             'password' => 'password123'
         ]));
 
@@ -26,10 +28,10 @@ class AuthControllerTest extends WebTestCase
         $this->assertEquals(201, $response->getStatusCode());
     }
 
-    public function testRegisterUsernameExists()
+    public function testRegisterUsernameAndEmailExists()
     {
         $this->client->request('POST', '/register', [], [], ['CONTENT_TYPE' => 'application/json'], json_encode([
-            'username' => 'existinguser',
+            'username' => 'testuser',
             'email' => 'test@example.com',
             'password' => 'password123'
         ]));

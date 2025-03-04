@@ -96,7 +96,7 @@ class ProductController extends AbstractController
                  'status' => false,
                  'code' => 400,
                  'message' => 'Product with this name already exists'
-             ]);
+             ], 400);
          }
 
         // Membuat entitas produk baru dan mengisinya dengan data yang didapat dari json
